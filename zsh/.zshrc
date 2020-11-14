@@ -10,6 +10,9 @@ fi
 # Many things rely on this
 export DOTFILE_DIR="${HOME}/.dotfiles"
 
+# SECRETS
+source "${DOTFILE_DIR}/.secrets"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
