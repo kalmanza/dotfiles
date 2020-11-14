@@ -155,9 +155,8 @@ alias evrc="vim ${DOTFILE_DIR}/nvim/init.vim"
 # Edit tmux.conf
 alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
 
-# Terminal Notifier
-# Usage: command; tn "done" or command && tn "success" || tn "fail"
-alias tn='/usr/local/Cellar/terminal-notifier/2.0.0/bin/terminal-notifier -message'
+# Edit custom functions
+alias efunc="vim ${DOTFILE_DIR}/zsh/functions" 
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
