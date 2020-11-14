@@ -1,7 +1,7 @@
 # DOTFILES
 # Make sure this is set to the dotfiles directory
 # Many things rely on this
-export DOTFILE_DIR="${HOME}/Dotfiles"
+export DOTFILE_DIR="${HOME}/.dotfiles"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -99,13 +99,16 @@ command rbenv rehash 2>/dev/null
 eval "$(rbenv init -)"
 
 #TMUXINATOR AUTOCOMPLETE
-source "${HOME}/.tmuxinator/tmuxinator.zsh"
+source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
 
 #USE NEW BASH
 eval export PATH="/usr/local/bin/bash:${PATH}"
 
 #USE NVIM
 alias vim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
+
+#Tmux
+alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
 #JAVA
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/'
