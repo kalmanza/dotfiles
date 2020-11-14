@@ -95,7 +95,6 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # GITHUB
-***REMOVED***
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 #RBENV
@@ -132,7 +131,11 @@ alias ldrc="source ${HOME}/.zshrc"
 #Edit this file
 alias erc="vim ${HOME}/.zshrc"
 
+# Edit vim rc
 alias evrc="vim ${DOTFILE_DIR}/nvim/init.vim"
+
+# Edit tmux.conf
+alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
@@ -146,8 +149,6 @@ compinit
 
 # Interactive Jq
 alias jq=jqi
-
-  
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
