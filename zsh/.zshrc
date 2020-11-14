@@ -11,7 +11,15 @@ fi
 export DOTFILE_DIR="${HOME}/.dotfiles"
 
 # SECRETS
-source "${DOTFILE_DIR}/.secrets"
+SECRETS=${DOTFILE_DIR}/.secrets
+if [[ -f ${SECRETS} ]]; then
+  source ${SECRETS}
+fi
+
+LOCAL_ZSHRC=${HOME}/.zsh_local
+if [[ -f ${LOCAL_ZSHRC} ]]; then
+  source ${LOCAL_ZSHRC}
+fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -119,8 +127,15 @@ alias vim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 #Tmux
 alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
-#JAVA
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/'
+# JAVA_HOME
+JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=$JAVA_HOME/bin:$PATH
+
+# GNU SED
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# GNU BASH 4+
+export PATH=/usr/local/bin/bash:$PATH
 
 #Functions
 source "${DOTFILE_DIR}/zsh/functions"
@@ -139,6 +154,10 @@ alias evrc="vim ${DOTFILE_DIR}/nvim/init.vim"
 
 # Edit tmux.conf
 alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
+
+# Terminal Notifier
+# Usage: command; tn "done" or command && tn "success" || tn "fail"
+alias tn='/usr/local/Cellar/terminal-notifier/2.0.0/bin/terminal-notifier -message'
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
