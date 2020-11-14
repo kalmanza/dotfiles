@@ -1,0 +1,4 @@
+imap <leader>r <Esc>:silent make<Enter>
+nmap <leader>r :silent make<Enter>
+set autowrite
+set autoread

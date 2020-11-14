@@ -1,0 +1,9 @@
+#compdef jqi
+
+function _jqi() {
+  if (( $CURRENT == 2 )) && [[ $words[2] =~ "--?" ]]; then
+    _jq
+  else
+    _files
+  fi
+}

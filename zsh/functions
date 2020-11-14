@@ -1,0 +1,127 @@
+# `git` wrapper:
+#
+#     - `git` with no arguments = `git status`; run `git help` to show what
+#       vanilla `git` without arguments would normally show.
+#     - `git root` = `cd` to repo root.
+#     - `git root ARG...` = evals `ARG...` from the root (eg. `git root ls`).
+#     - `git ARG...` = behaves just like normal `git` command.
+#
+function git() {
+  if [ $# -eq 0 ]; then
+    command git status
+  elif [ "$1" = root ]; then
+    shift
+    local ROOT
+    if [ "$(command git rev-parse --is-inside-git-dir 2> /dev/null)" = true ]; then
+      if [ "$(command git rev-parse --is-bare-repository)" = true ]; then
+        ROOT="$(command git rev-parse --absolute-git-dir)"
+      else
+        # Note: This is a good-enough, rough heuristic, which ignores
+        # the possibility that GIT_DIR might be outside of the worktree;
+        # see:
+        # https://stackoverflow.com/a/38852055/2103996
+        ROOT="$(command git rev-parse --git-dir)/.."
+      fi
+    else
+      # Git 2.13.0 and above:
+      ROOT="$(command git rev-parse --show-superproject-working-tree 2> /dev/null)"
+      if [ -z "$ROOT" ]; then
+        ROOT="$(command git rev-parse --show-toplevel 2> /dev/null)"
+      fi
+    fi
+    if [ -z "$ROOT" ]; then
+      ROOT=.
+    fi
+    if [ $# -eq 0 ]; then
+      cd "$ROOT"
+    else
+      (cd "$ROOT" && eval "$@")
+    fi
+  else
+    command git "$@"
+  fi
+}
+
+function history() {
+  emulate -L zsh
+
+  # This is a function because Zsh aliases can't take arguments.
+  fc -l 1
+}
+
+function scratch() {
+  local SCRATCH=$(mktemp -d)
+  echo 'Spawing subshell in scratch directory:'
+  echo "  $SCRATCH"
+  (cd $SCRATCH; zsh)
+  echo "Removing scratch directory"
+  rm -rf "$SCRATCH"
+}
+
+function jqi() {
+  if [[ $# -eq 1 ]] && [[ -f $1 ]]; then
+    local SCRATCH=$(mktemp -d)
+    export CURD=${PWD}
+      echo 'Spawing subshell in scratch directory:'
+      echo "  $SCRATCH"
+      touch $SCRATCH/filter
+      echo "BUILD:\n\tjq -f ./filter < ./input.json &> ${CURD}/output.json" > $SCRATCH/Makefile
+      cp $1 $SCRATCH/input.json
+      (cd $SCRATCH; zsh -i -c "vim -O ./filter $CURD/output.json -S ${DOTFILE_DIR}/nvim/commands/jq")
+      echo "Removing scratch directory"
+      rm -rf "$SCRATCH"
+  else
+    command jq "$@"
+  fi
+}
+
+function ssh() {
+  emulate -L zsh
+
+  local LOCAL_TERM=$(echo -n "$TERM" | sed -e s/tmux/screen/)
+  env TERM=$LOCAL_TERM command ssh "$@"
+}
+
+# regmv = regex + mv (mv with regex parameter specification)
+#   example: regmv '/\.tif$/.tiff/' *
+#   replaces .tif with .tiff for all files in current dir
+#   must quote the regex otherwise "\." becomes "."
+# limitations: ? doesn't seem to work in the regex, nor *
+function regmv() {
+  emulate -L zsh
+
+  if [ $# -lt 2 ]; then
+    echo "  Usage: regmv 'regex' file(s)"
+    echo "  Where:       'regex' should be of the format '/find/replace/'"
+    echo "Example: regmv '/\.tif\$/.tiff/' *"
+    echo "   Note: Must quote/escape the regex otherwise \"\.\" becomes \".\""
+    return 1
+  fi
+  local REGEX="$1"
+  shift
+  while [ -n "$1" ]
+  do
+    local NEWNAME=$(echo "$1" | sed "s${REGEX}g")
+    if [ "${NEWNAME}" != "$1" ]; then
+      mv -i -v "$1" "$NEWNAME"
+    fi
+    shift
+  done
+}
+
+# Print a pruned version of a tree.
+#
+# Examples:
+#
+#   # Print all "*.js" files in src:
+#   subtree '*.js' src
+#
+#   # Print all "*.js" files in the current directory:
+#   subtree '*.js'
+#
+#   # Print all "*.js" and "*.ts" files in current directory:
+#   subtree '*.js|*.ts'
+#
+function subtree() {
+  tree -a --prune -P "$@"
+}
