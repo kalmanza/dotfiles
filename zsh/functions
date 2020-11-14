@@ -126,8 +126,6 @@ function subtree() {
   tree -a --prune -P "$@"
 }
 
-function _tn() { }
-
 function tn() {
-  command "$@" | terminal-notifier -m "Finished $@"
+  command "$@" && terminal-notifier -message "Finished $@"
 }

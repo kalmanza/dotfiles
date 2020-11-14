@@ -109,17 +109,13 @@ export EDITOR='vim'
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 #RBENV
-eval export PATH="${HOME}/.rbenv/shims:${PATH}"
-export RBENV_SHELL=zsh
-source '/usr/local/Cellar/rbenv/1.1.2/libexec/../completions/rbenv.zsh'
-command rbenv rehash 2>/dev/null
 eval "$(rbenv init -)"
 
 #TMUXINATOR AUTOCOMPLETE
 source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
 
 #USE NEW BASH
-eval export PATH="/usr/local/bin/bash:${PATH}"
+export PATH="/usr/local/bin/bash:${PATH}"
 
 #USE NVIM
 alias vim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
