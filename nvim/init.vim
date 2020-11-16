@@ -20,5 +20,6 @@ set textwidth=80
 hi colorcolumn ctermbg=Blue
 inoremap jj <esc>
 inoremap kk <esc>
+nmap <leader>id :put =strftime('%b %d, %Y')<Return>
 syntax enable
 autocmd Filetype gitcommit set tw=72 
