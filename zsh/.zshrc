@@ -117,9 +117,11 @@ source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
 #USE NEW BASH
 export PATH="/usr/local/bin/bash:${PATH}"
 
-#USE NVIM
-alias vim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
+# USE NVIM
+alias vim="nvim"
 
+# USE DOTFILE VIMRC
+alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 #Tmux
 alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 

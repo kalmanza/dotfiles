@@ -21,5 +21,6 @@ hi colorcolumn ctermbg=Blue
 inoremap jj <esc>
 inoremap kk <esc>
 nmap <leader>id :put =strftime('%b %d, %Y')<Return>
+vmap <leader>y :w !pbcopy<Return>
 syntax enable
 autocmd Filetype gitcommit set tw=72 
