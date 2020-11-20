@@ -120,6 +120,9 @@ export PATH="/usr/local/bin/bash:${PATH}"
 # USE NVIM
 alias vim="nvim"
 
+# View with nvim
+alias view="$EDITOR -R"
+
 # USE DOTFILE VIMRC
 alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 #Tmux
