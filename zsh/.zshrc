@@ -135,9 +135,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 # GNU SED
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# GNU BASH 4+
-export PATH=/usr/local/bin/bash:$PATH
-
 #Functions
 source "${DOTFILE_DIR}/zsh/functions"
 
