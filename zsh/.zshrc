@@ -101,17 +101,12 @@ export EDITOR="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-# GITHUB
-export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 #RBENV
 eval "$(rbenv init -)"
 
 #TMUXINATOR AUTOCOMPLETE
 source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
-
-#USE NEW BASH
-export PATH="/usr/local/bin/bash:${PATH}"
 
 # USE NVIM
 alias vim="nvim"
@@ -124,18 +119,14 @@ alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 #Tmux
 alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
-# JAVA_HOME
-JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-export PATH=$JAVA_HOME/bin:$PATH
-
-# GNU SED
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-
-#Functions
+#Functions from dotfiles
 source "${DOTFILE_DIR}/zsh/functions"
 
-#CTAGS
-alias ctags=/usr/local/bin/ctags
+# Local Functions
+LOCAL_FUNCTIONS="${HOME}/.local_functions"
+if [[ -f ${LOCAL_FUNCTIONS} ]]; then
+  source ${LOCAL_FUNCTIONS}
+fi
 
 #Reload zshrc
 alias ldrc="source ${HOME}/.zshrc"
@@ -152,13 +143,10 @@ alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
 # Edit custom functions
 alias efunc="vim ${DOTFILE_DIR}/zsh/functions" 
 
+# Custom completions
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
-
-# Custom completions
-#fpath+=(/Users/almanza/.config/zsh)
 fpath+=(${DOTFILE_DIR}/zsh)
-
 autoload -Uz compinit
 compinit
 
@@ -167,9 +155,6 @@ alias jq=jqi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Add Homebrew sbin to PATH
-export PATH="/usr/local/sbin:$PATH"
 
 LOCAL_ZSHRC=${HOME}/.zsh_local
 if [[ -f ${LOCAL_ZSHRC} ]]; then
