@@ -160,3 +160,7 @@ LOCAL_ZSHRC=${HOME}/.zsh_local
 if [[ -f ${LOCAL_ZSHRC} ]]; then
   source ${LOCAL_ZSHRC}
 fi
+
+# Do not share history
+unsetopt sharehistory
+setopt incappendhistory
