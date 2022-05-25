@@ -16,10 +16,6 @@ if [[ -f ${SECRETS} ]]; then
   source ${SECRETS}
 fi
 
-LOCAL_ZSHRC=${HOME}/.zsh_local
-if [[ -f ${LOCAL_ZSHRC} ]]; then
-  source ${LOCAL_ZSHRC}
-fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -129,7 +125,7 @@ alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
 # JAVA_HOME
-JAVA_HOME=$(/usr/libexec/java_home)
+JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH=$JAVA_HOME/bin:$PATH
 
 # GNU SED
@@ -171,3 +167,11 @@ alias jq=jqi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add Homebrew sbin to PATH
+export PATH="/usr/local/sbin:$PATH"
+
+LOCAL_ZSHRC=${HOME}/.zsh_local
+if [[ -f ${LOCAL_ZSHRC} ]]; then
+  source ${LOCAL_ZSHRC}
+fi
