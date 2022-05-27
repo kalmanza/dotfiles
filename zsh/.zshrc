@@ -71,7 +71,10 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-
+LOCAL_PLUGINS="~/.zsh_plugins_local"
+if [[ -f ${LOCAL_PLUGINS} ]]; then
+  plugins+=($(cat ${LOCAL_PLUGINS}))
+fi
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
