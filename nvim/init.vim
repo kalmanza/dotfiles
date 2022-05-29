@@ -24,3 +24,4 @@ nmap <leader>id :put =strftime('%b %d, %Y')<Return>
 vmap <leader>y :w !pbcopy<Return>
 syntax enable
 autocmd Filetype gitcommit set tw=72 
+autocmd Filetype conf set tw=0
