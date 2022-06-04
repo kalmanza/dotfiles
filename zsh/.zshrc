@@ -159,11 +159,19 @@ alias jq=jqi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Do not share history
+unsetopt sharehistory
+setopt incappendhistory
+
+# keep only unique entries in PATH
+typeset -U path
+
+# Local system settings
 LOCAL_ZSHRC=${HOME}/.zsh_local
+alias ercl="vim ${LOCAL_ZSHRC}"
+
 if [[ -f ${LOCAL_ZSHRC} ]]; then
   source ${LOCAL_ZSHRC}
 fi
 
-# Do not share history
-unsetopt sharehistory
-setopt incappendhistory
+
