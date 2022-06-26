@@ -3,10 +3,15 @@ set -eo pipefail
 
 #Run script from root of git repo
 #Pull all submodules recursively
-git submodule update --recurse
+git submodule update --recursive
+
+ln -s "./zsh/.zshrc" "~/.zshrc"
+touch "~/.zsh_local"
+touch "~/.local_functions"
+touch "~/.zsh_plugins_local"
 
 #Set up Powerlevel10k
-git clone git@github.com:romkatv/powerlevel10k.git zsh/oh-my-zsh/custom/themes/
+git clone git@github.com:romkatv/powerlevel10k.git ".zsh/oh-my-zsh/custom/themes/"
 
 #Set up nvim
 sh -c 'curl -fLo \
