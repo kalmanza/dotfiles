@@ -5,7 +5,7 @@ set -eo pipefail
 #Pull all submodules recursively
 git submodule update --recursive
 
-ln -s "./zsh/.zshrc" "${HOME}/.zshrc"
+ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
 touch "${HOME}/.zsh_local"
 touch "${HOME}/.local_functions"
 touch "${HOME}/.zsh_plugins_local"
