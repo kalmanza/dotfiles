@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-#Run script from root of git repo
-#Pull all submodules recursively
-git submodule update --recursive
-
 ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
 touch "${HOME}/.zsh_local"
 touch "${HOME}/.local_functions"
