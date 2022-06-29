@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
+if [[ -f "${HOME}/.zshrc" ]]; then
+  echo "${HOME}/.zshrc alread exists"
+else
+  ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
+fi
+
 touch "${HOME}/.zsh_local"
 touch "${HOME}/.local_functions"
 touch "${HOME}/.zsh_plugins_local"
@@ -17,4 +22,4 @@ sh -c 'curl -fLo \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 #Install plugins
-vim -c :PlugInstall
+nvim -c :PlugInstall
