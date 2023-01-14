@@ -130,6 +130,7 @@ LOCAL_FUNCTIONS="${HOME}/.local_functions"
 if [[ -f ${LOCAL_FUNCTIONS} ]]; then
   source ${LOCAL_FUNCTIONS}
 fi
+alias efuncl="vim $LOCAL_FUNCTIONS"
 
 #Reload zshrc
 alias ldrc="source ${HOME}/.zshrc"
