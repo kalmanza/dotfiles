@@ -107,8 +107,9 @@ if [[ -f ${LOCAL_ZSHRC} ]]; then
   source ${LOCAL_ZSHRC}
 fi
 
-# For LS_COLORS
+# For LSCOLORS
 export CLICOLOR=1
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # use emacs keybindings
 # CTRL [P,N] for previous,next history line
