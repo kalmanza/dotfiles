@@ -30,7 +30,7 @@ $line_break\
 $character"""
 
 add_newline = true
-command_timeout = 2000
+command_timeout = 5000
 
 
 [fill]
@@ -38,6 +38,7 @@ symbol = ' '
 
 [java]
 format = '[$symbol($version )]($style)'
+disabled = true
 
 [package]
 format = '[$symbol$version]($style) '

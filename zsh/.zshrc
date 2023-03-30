@@ -1,3 +1,6 @@
+# Pointers for editing
+# use setopt and unsetopt rather than set -o
+#
 # DOTFILES
 # Make sure this is set to the dotfiles directory
 # Many things rely on this
@@ -38,11 +41,10 @@ export GIT_EDITOR=${EDITOR}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # Custom completions
+autoload -Uz compinit && compinit
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
 fpath+=(${DOTFILE_DIR}/zsh)
-autoload -Uz compinit
-compinit
 
 #RBENV
 eval "$(rbenv init -)"
@@ -105,7 +107,13 @@ if [[ -f ${LOCAL_ZSHRC} ]]; then
   source ${LOCAL_ZSHRC}
 fi
 
+# For LS_COLORS
 export CLICOLOR=1
+
+# use emacs keybindings
+# CTRL [P,N] for previous,next history line
+# CTRL U to clear whole line
+bindkey -e
 
 export STARSHIP_CONFIG=${DOTFILE_DIR}/starship/starship.toml
 eval "$(starship init zsh)"
