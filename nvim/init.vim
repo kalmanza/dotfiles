@@ -16,7 +16,6 @@ set relativenumber nu
 set path+=**
 set wildmenu
 set cc=80
-set textwidth=80
 hi colorcolumn ctermbg=Blue
 inoremap jj <esc>
 inoremap kk <esc>
@@ -25,3 +24,4 @@ vmap <leader>y :w !pbcopy<Return>
 syntax enable
 autocmd Filetype gitcommit set tw=72 
 autocmd Filetype conf set tw=0
+autocmd Filetype text set tw=80
