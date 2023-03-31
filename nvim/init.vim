@@ -18,6 +18,10 @@ set path+=**
 set wildmenu
 set cc=80
 hi colorcolumn ctermbg=Blue
+hi MatchParen ctermfg=NONE ctermbg=NONE cterm=bold,underline
+hi Search ctermfg=16 ctermbg=173 cterm=NONE
+hi CurSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
+hi IncSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
 inoremap jj <esc>
 inoremap kk <esc>
 nmap <leader>id :put =strftime('%b %d, %Y')<Return>

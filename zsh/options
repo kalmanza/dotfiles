@@ -1,6 +1,10 @@
 # Pointers for editing
 # use setopt and unsetopt rather than set -o
 #
+
+# Auto CD allows .. instead of cd ..
+setopt autocd
+
 # Do not share history
 unsetopt sharehistory
 setopt incappendhistory
