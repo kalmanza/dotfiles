@@ -12,7 +12,7 @@ export GIT_EDITOR=${EDITOR}
 
 # SECRETS
 SECRETS=${DOTFILE_DIR}/.secrets
-if [[ -f ${SECRETS} ]]; then
+if [[ -r ${SECRETS} ]]; then
   source ${SECRETS}
 fi
 
@@ -34,24 +34,24 @@ source "${DOTFILE_DIR}/zsh/functions"
 
 # Options
 OPTIONS="${DOTFILE_DIR}/zsh/options"
-if [[ -f ${OPTIONS} ]]; then
+if [[ -r ${OPTIONS} ]]; then
   source ${OPTIONS}
 fi
 
 # Aliases
-if [[ -f "${DOTFILE_DIR}/zsh/aliases" ]]; then
+if [[ -r "${DOTFILE_DIR}/zsh/aliases" ]]; then
   source "${DOTFILE_DIR}/zsh/aliases"
 fi
 
 # Local system settings
 LOCAL_ZSHRC="${HOME}/.zsh_local"
-if [[ -f ${LOCAL_ZSHRC} ]]; then
+if [[ -r ${LOCAL_ZSHRC} ]]; then
   source ${LOCAL_ZSHRC}
 fi
 
 # Local Functions
 LOCAL_FUNCTIONS="${HOME}/.local_functions"
-if [[ -f ${LOCAL_FUNCTIONS} ]]; then
+if [[ -r ${LOCAL_FUNCTIONS} ]]; then
   source ${LOCAL_FUNCTIONS}
 fi
 
