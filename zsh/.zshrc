@@ -1,15 +1,14 @@
-# Exports
+# DOTFILES
+# Make sure this is set to the dotfiles directory
+# Many things rely on this
+export DOTFILE_DIR="${HOME}/.dotfiles"
+
 # For LSCOLORS
 export CLICOLOR=1
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 # Editors
 export EDITOR="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 export GIT_EDITOR=${EDITOR}
-
-# DOTFILES
-# Make sure this is set to the dotfiles directory
-# Many things rely on this
-DOTFILE_DIR="${HOME}/.dotfiles"
 
 # SECRETS
 SECRETS=${DOTFILE_DIR}/.secrets

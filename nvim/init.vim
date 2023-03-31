@@ -5,6 +5,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-vinegar'
 call plug#end()
 
+colo slate
 set ruler
 set ignorecase
 set smartcase
