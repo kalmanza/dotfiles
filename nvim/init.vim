@@ -1,7 +1,5 @@
 call plug#begin()
-Plug 'tpope/vim-sensible'
 Plug 'git@github.com:tpope/vim-surround.git'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-vinegar'
 call plug#end()
 
@@ -22,10 +20,12 @@ hi MatchParen ctermfg=NONE ctermbg=NONE cterm=bold,underline
 hi Search ctermfg=16 ctermbg=173 cterm=NONE
 hi CurSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
 hi IncSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
+let mapleader = "\\"
+let maplocalleader = ";"
 inoremap jj <esc>
-inoremap kk <esc>
-nmap <leader>id :put =strftime('%b %d, %Y')<Return>
-vmap <leader>y :w !pbcopy<Return>
+nnoremap <leader>id :put =strftime('%b %d, %Y')<Return>kdd
+vnoremap <leader>y "*y
+nnoremap <leader>ev :vsplit ~/.dotfiles/nvim/init.vim<cr>
 syntax enable
 autocmd Filetype gitcommit set tw=72 
 autocmd Filetype conf set tw=0
