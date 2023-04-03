@@ -1,0 +1,54 @@
+format = """
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$custom\
+$fill\
+$package\
+$java\
+$kotlin\
+$python\
+$ruby\
+$terraform\
+$memory_usage\
+$env_var\
+$sudo\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$shell\
+$line_break\
+$character"""
+
+add_newline = true
+command_timeout = 5000
+
+
+[fill]
+symbol = ' '
+
+[java]
+format = '[$symbol($version )]($style)'
+disabled = true
+
+[package]
+format = '[$symbol$version]($style) '
+
+[python]
+format = '[$symbol($version )]($style)'
+
+[ruby]
+format = '[$symbol($version )]($style)'
+
+[time]
+format = '[$time]($style) '
+disabled = false

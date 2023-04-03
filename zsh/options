@@ -1,0 +1,26 @@
+# Pointers for editing
+# use setopt and unsetopt rather than set -o
+#
+
+# Auto CD allows .. instead of cd ..
+setopt autocd
+
+# Do not share history
+unsetopt sharehistory
+setopt incappendhistory
+
+# Put history command in prompt but don't run automatically
+setopt histverify 
+
+# No beep on error
+setopt nobeep
+
+# use emacs keybindings
+# CTRL [P,N] for previous,next history line
+# CTRL U to clear whole line
+bindkey -e
+
+# keep only unique entries in PATH
+typeset -U path
+
+# vi: ft=zsh

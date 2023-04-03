@@ -1,0 +1,45 @@
+# USE NVIM
+alias vim="nvim"
+
+# View with nvim
+alias view="$EDITOR -R"
+
+# USE DOTFILE VIMRC
+alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
+#Tmux
+alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
+
+#Edit local functions
+alias efuncl="vim ${HOME}/.local_functions"
+
+#Reload zshrc
+alias ldrc="source ${HOME}/.zshrc"
+
+#Edit dotfiles zshrc
+alias erc="vim ${HOME}/.zshrc"
+
+# Edit vim rc
+alias evrc="vim ${DOTFILE_DIR}/nvim/init.vim"
+
+# Edit tmux.conf
+alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
+
+# Edit custom functions
+alias efunc="vim ${DOTFILE_DIR}/zsh/functions" 
+
+#Edit local overrides
+alias ercl="vim ${HOME}/.zsh_local"
+
+#Edit aliases (this file)
+alias ealiases="vim ${DOTFILE_DIR}/zsh/aliases"
+
+alias eopts="vim ${DOTFILE_DIR}/zsh/options"
+
+#ls flags
+alias ll="ls -l"
+alias la="ls -a"
+
+# Interactive Jq
+alias jq=jqi
+
+# vi: ft=zsh
