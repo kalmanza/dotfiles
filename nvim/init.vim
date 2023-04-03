@@ -63,7 +63,7 @@ augroup END
 augroup ft_python
   autocmd Filetype python nnoremap <buffer> <localleader>c I#<esc>
   "li for lint
-  autocmd Filetype python nnoremap <buffer> <localleader>li :w<cr>:!black %<cr><cr>:e<cr>
+  autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r:e\r"<cr>
 augroup END
 " }}}
 
