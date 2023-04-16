@@ -38,7 +38,10 @@ inoremap jj <esc>
 nnoremap <leader>id :put =strftime('%b %d, %Y')<Return>kdd
 vnoremap <leader>y "*y
 nnoremap <leader>ev :vsplit ~/.dotfiles/nvim/init.vim<cr>
+nnoremap <leader>ep :vsplit ~/.local/share/nvim/site/plugin<cr>
 nnoremap <leader>sv :source ~/.dotfiles/nvim/init.vim<cr>
+nnoremap <c-j> :cnext<cr>
+nnoremap <c-k> :cprevious<cr>
 " }}}
 
 "Git file settings-------------------- {{{
