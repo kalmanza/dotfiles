@@ -8,7 +8,7 @@ hash -d dotfiles=${DOTFILE_DIR}
 export CLICOLOR=1
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 # Editors
-export EDITOR="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
+export EDITOR="vim"
 export GIT_EDITOR=${EDITOR}
 # Manpager
 export MANPAGER="vim +MANPAGER --not-a-term -"

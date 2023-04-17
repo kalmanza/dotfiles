@@ -1,16 +1,3 @@
-"Colors-------------------- {{{
-colorscheme slate
-highlight colorcolumn ctermbg=blue
-highlight MatchParen ctermfg=NONE ctermbg=NONE cterm=bold,underline
-highlight Search ctermfg=16 ctermbg=173 cterm=NONE
-highlight CurSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
-highlight IncSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^Eterm'
-  set t_Co=16
-endif
-" }}}
-
 "Global settings-------------------- {{{
 set autoindent
 set backspace=indent,eol,start
@@ -47,6 +34,19 @@ syntax enable
 let mapleader = "\\"
 let maplocalleader = ";"
 runtime ftplugin/man.vim
+" }}}
+
+"Colors-------------------- {{{
+colorscheme slate
+highlight colorcolumn ctermbg=blue
+highlight MatchParen ctermfg=NONE ctermbg=NONE cterm=bold,underline
+highlight Search ctermfg=16 ctermbg=173 cterm=NONE
+highlight CurSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
+highlight IncSearch ctermfg=16 ctermbg=lightgrey cterm=NONE
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^Eterm'
+  set t_Co=16
+endif
 " }}}
 
 "Global mappings-------------------- {{{
