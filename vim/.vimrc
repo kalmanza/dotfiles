@@ -103,5 +103,13 @@ augroup END
 augroup ft_man
   autocmd!
   autocmd Filetype man setlocal keywordprg=:Man
+  autocmd Filetype man setlocal colorcolumn=""
+augroup END
+" }}}
+
+"Help file settings-------------------- {{{
+augroup ft_help
+  autocmd!
+  autocmd Filetype help setlocal colorcolumn=""
 augroup END
 " }}}
