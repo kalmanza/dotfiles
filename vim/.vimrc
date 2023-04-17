@@ -76,7 +76,9 @@ augroup END
 
 "Text file settings-------------------- {{{
 augroup ft_text
+  autocmd!
   autocmd Filetype text setlocal textwidth=80
+  autocmd Filetype text setlocal nowrap
 augroup END
 " }}}
 
