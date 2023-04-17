@@ -1,6 +1,5 @@
 # Pointers for editing
 # use setopt and unsetopt rather than set -o
-#
 
 # Auto CD allows .. instead of cd ..
 setopt autocd
@@ -14,6 +13,15 @@ setopt histverify
 
 # No beep on error
 setopt nobeep
+
+# Use pushd when cd
+setopt autopushd
+
+# Do not print dirstack when pushing
+setopt pushdsilent
+
+# Do not swap first two entries in stack with no args to cd
+setopt pushdtohome
 
 # use emacs keybindings
 # CTRL [P,N] for previous,next history line
