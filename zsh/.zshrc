@@ -10,6 +10,8 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 # Editors
 export EDITOR="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 export GIT_EDITOR=${EDITOR}
+# Manpager
+export MANPAGER="vim +MANPAGER --not-a-term -"
 
 # SECRETS
 SECRETS=${DOTFILE_DIR}/.secrets

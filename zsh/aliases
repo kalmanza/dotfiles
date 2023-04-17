@@ -1,11 +1,9 @@
 # USE NVIM
-alias vim="nvim"
+#alias vim="nvim"
 
 # View with nvim
 alias view="$EDITOR -R"
 
-# USE DOTFILE VIMRC
-alias nvim="nvim -u ${DOTFILE_DIR}/nvim/init.vim"
 #Tmux
 alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
@@ -19,7 +17,7 @@ alias ldrc="source ${HOME}/.zshrc"
 alias erc="vim ${HOME}/.zshrc"
 
 # Edit vim rc
-alias evrc="vim ${DOTFILE_DIR}/nvim/init.vim"
+alias evrc="vim ${DOTFILE_DIR}/vim/.vimrc"
 
 # Edit tmux.conf
 alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"

@@ -67,7 +67,7 @@ function jqi() {
       touch $SCRATCH/filter
       echo "BUILD:\n\tjq -f ./filter < ./input.json &> ${CURD}/output.json" > $SCRATCH/Makefile
       cp $1 $SCRATCH/input.json
-      (cd $SCRATCH; zsh -i -c "vim -O ./filter $CURD/output.json -S ${DOTFILE_DIR}/nvim/commands/jq")
+      (cd $SCRATCH; zsh -i -c "vim -O ./filter $CURD/output.json -S ${DOTFILE_DIR}/vim/commands/jq")
       echo "Removing scratch directory"
       rm -rf "$SCRATCH"
   else

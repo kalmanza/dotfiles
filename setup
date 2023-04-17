@@ -1,25 +1,33 @@
 #!/usr/bin/env bash
 set -eo pipefail
-
-if [[ -f "${HOME}/.zshrc" ]]; then
-  echo "${HOME}/.zshrc alread exists"
+if [[ -e "${HOME}/.zshrc" ]]; then
+  echo "${HOME}/.zshrc already exists"
 else
   ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
 fi
+if [[ -e "${HOME}/.vimrc" ]]; then
+  echo "${HOME}/.vimrc already exists"
+else
+  ln -s "${HOME}/.dotfiles/vim/.vimrc" "${HOME}/.vimrc"
+fi
+if [[ -e "${HOME}/.vim" ]]; then
+  echo "${HOME}/.vim already exists"  
+else
+  ln -s "${HOME}/.dotfiles/vim/.vim" "${HOME}/.vim"
+fi
+if [[ -e "${HOME}/.zsh_local" ]]; then
+  echo "${HOME}/.zsh_local already exists"
+else
+  touch "${HOME}/.zsh_local"
+fi
+if [[ -e "${HOME}/.local_functions" ]]; then
+  echo "${HOME}/.local_functions already exists"
+else
+  touch "${HOME}/.local_functions"
+fi
+if [[ -e "${HOME}/.zsh_plugins_local" ]]; then
+  echo "${HOME}/.zsh_plugins_local already exists"
+else
+  touch "${HOME}/.zsh_plugins_local"
+fi
 
-touch "${HOME}/.zsh_local"
-touch "${HOME}/.local_functions"
-touch "${HOME}/.zsh_plugins_local"
-
-#Set up Powerlevel10k
-git clone git@github.com:romkatv/powerlevel10k.git\
-  "./zsh/oh-my-zsh/custom/themes/powerlevel10k"
-
-#Set up nvim
-sh -c 'curl -fLo \
-  "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
-  --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-#Install plugins
-nvim -c :PlugInstall
