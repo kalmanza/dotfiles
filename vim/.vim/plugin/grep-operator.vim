@@ -12,13 +12,15 @@ function! s:GrepOperator(type)
   else
     return
   endif
-  silent execute ":grep! -R" shellescape(@@) "."
+  silent! execute ":grep! -R" shellescape(@@) "."
+  redraw!
   copen
   let @@ = save_unnamed_register
 endfunction
 
 function! s:InputRGrep()
   let pattern = input("search: ")
-  silent execute ":grep! -R" shellescape(pattern) "."
+  silent! execute ":grep! -R" shellescape(pattern) "."
+  redraw!
   copen
 endfunction
