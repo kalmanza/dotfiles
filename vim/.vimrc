@@ -50,7 +50,7 @@ endif
 " }}}
 
 "Global mappings-------------------- {{{
-inoremap jj <esc>
+inoremap jk <esc>
 nnoremap <leader>id :put =strftime('%b %d, %Y')<Return>kdd
 vnoremap <leader>y "*y
 nnoremap <leader>ev :vsplit ~/.dotfiles/vim/.vimrc<cr>
@@ -58,7 +58,7 @@ nnoremap <leader>ep :vsplit ~/.dotfiles/vim/.vim/plugin<cr>
 nnoremap <leader>sv :source ~/.dotfiles/vim/.vimrc<cr>
 nnoremap <c-j> :cnext<cr>
 nnoremap <c-k> :cprevious<cr>
-nnoremap - :Vexplore<cr>
+nnoremap - :Explore<cr>
 nnoremap <c-l> :nohlsearch<cr>
 " }}}
 
