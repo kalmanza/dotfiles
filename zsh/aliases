@@ -40,4 +40,8 @@ alias la="ls -a"
 # Interactive Jq
 alias jq=jqi
 
+if [[ $(uname) =~ "Linux" ]]; then
+  alias ls="ls --color=auto"
+fi
+
 # vi: ft=zsh

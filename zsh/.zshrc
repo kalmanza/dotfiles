@@ -8,6 +8,8 @@ hash -d dotfiles=${DOTFILE_DIR}
 if [[ $(uname) =~ "Darwin" ]]; then
   export CLICOLOR=1
   export LSCOLORS="Gxfxcxdxbxegedabagacad"
+elif [[ $(uname) =~ "Linux" ]]; then
+  eval $(dircolors)
 fi
 # Editors
 export EDITOR="vim"
