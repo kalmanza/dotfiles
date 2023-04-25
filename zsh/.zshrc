@@ -5,11 +5,17 @@ export DOTFILE_DIR="${HOME}/.dotfiles"
 hash -d dotfiles=${DOTFILE_DIR}
 
 # For LSCOLORS
-export CLICOLOR=1
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+if [[ $(uname) =~ "Darwin" ]]; then
+  export CLICOLOR=1
+  export LSCOLORS="Gxfxcxdxbxegedabagacad"
+fi
 # Editors
 export EDITOR="vim"
 export GIT_EDITOR=${EDITOR}
+if [[ $(uname) =~ "Linux" ]]; then
+  export SYSTEMD_EDITOR="vim"
+  export SUDO_EDITOR="vim"
+fi
 # Manpager
 export MANPAGER="vim +MANPAGER --not-a-term -"
 
