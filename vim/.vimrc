@@ -1,7 +1,6 @@
 "Global settings-------------------- {{{
 set autoindent
 set backspace=indent,eol,start
-set colorcolumn=80
 set complete-=i
 set nolangremap
 set expandtab
@@ -65,12 +64,15 @@ nnoremap <c-l> :nohlsearch<cr>
 "Git file settings-------------------- {{{
 augroup ft_gitcommit
   autocmd Filetype gitcommit setlocal textwidth=72 
+  autocmd Filetype gitcommit setlocal colorcolumn=72
 augroup END
 " }}}
 
 "Configuration file settings-------------------- {{{
 augroup ft_conf
+  autocmd!
   autocmd Filetype conf setlocal textwidth=0
+  autocmd Filetype conf setlocal colorcolumn=80
 augroup END
 " }}}
 
@@ -79,6 +81,7 @@ augroup ft_text
   autocmd!
   autocmd Filetype text setlocal textwidth=80
   autocmd Filetype text setlocal nowrap
+  autocmd Filetype text setlocal colorcolumn=80
 augroup END
 " }}}
 
@@ -87,6 +90,7 @@ augroup ft_python
   autocmd Filetype python nnoremap <buffer> <localleader>c I#<esc>
   "li for lint
   autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r:e\r"<cr>
+  autocmd Filetype python setlocal colorcolumn=80
 augroup END
 " }}}
 
@@ -95,7 +99,8 @@ augroup ft_vim
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
   autocmd Filetype vim vnoremap <buffer> <localleader>if <esc>'>o<esc>0i" }}}<esc>'<O<esc>0i"-------------------- {{{<esc>T"i
-  autocmd Filetype man setlocal keywordprg=:help
+  autocmd Filetype vim setlocal keywordprg=:help
+  autocmd Filetype vim setlocal colorcolumn=80
 augroup END
 " }}}
 
