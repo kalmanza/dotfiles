@@ -1,5 +1,8 @@
-nnoremap <localleader>l :set operatorfunc=<SID>LinkOperator<cr>g@
-vnoremap <localleader>l :<c-u>call <SID>LinkOperator(visualmode())<cr>
+augroup ft_markdown
+  autocmd!
+  autocmd Filetype markdown nnoremap <localleader>l :set operatorfunc=<SID>LinkOperator<cr>g@
+  autocmd Filetype markdown vnoremap <localleader>l :<c-u>call <SID>LinkOperator(visualmode())<cr>
+augroup END
 
 function! s:LinkOperator(type)
   let save_unnamed_register = @@
