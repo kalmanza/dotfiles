@@ -129,3 +129,9 @@ function subtree() {
 function tn() {
   command "$@" && terminal-notifier -message "Finished $@"
 }
+
+function man() {
+  if [[ $(command man -w "$@") ]]; then
+    command vim "+silent Man $@" +only 
+  fi
+}
