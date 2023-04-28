@@ -1,39 +1,60 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-if [[ -e "${HOME}/.zshrc" ]]; then
-  echo "${HOME}/.zshrc already exists"
+DOTFILES="${HOME}/.dotfiles"
+
+ZSHRC="${HOME}/.zshrc"
+if [[ -e "${ZSHRC}" ]]; then
+  echo "${ZSHRC} already exists"
 else
-  ln -s "${HOME}/.dotfiles/zsh/.zshrc" "${HOME}/.zshrc"
+  ln -s "${DOTFILES}/zsh/.zshrc" "${ZSHRC}"
+  echo "linked ${ZSHRC}"
 fi
 
-if [[ -e "${HOME}/.vimrc" ]]; then
-  echo "${HOME}/.vimrc already exists"
+VIMRC="${HOME}/.vimrc"
+if [[ -e "${VIMRC}" ]]; then
+  echo "${VIMRC} already exists"
 else
-  ln -s "${HOME}/.dotfiles/vim/.vimrc" "${HOME}/.vimrc"
+  ln -s "${DOTFILES}/vim/.vimrc" "${VIMRC}"
+  echo "linked ${VIMRC}"
 fi
 
-if [[ -e "${HOME}/.vim" ]]; then
-  echo "${HOME}/.vim already exists"  
+VIM="${HOME}/.vim" 
+if [[ -e "${VIM}" ]]; then
+  echo "${VIM} already exists"  
 else
-  ln -s "${HOME}/.dotfiles/vim/.vim" "${HOME}/.vim"
+  ln -s "${DOTFILES}/vim/.vim" "${VIM}"
+  echo "linke ${VIM}"
 fi
 
-if [[ -e "${HOME}/.zsh_local" ]]; then
-  echo "${HOME}/.zsh_local already exists"
+ZSH_LOCAL="${HOME}/.zsh_local" 
+if [[ -e "${ZSH_LOCAL}" ]]; then
+  echo "${ZSH_LOCAL} already exists"
 else
   touch "${HOME}/.zsh_local"
+  echo "created ${ZSH_LOCAL}"
 fi
 
-if [[ -e "${HOME}/.local_functions" ]]; then
-  echo "${HOME}/.local_functions already exists"
+LOCAL_FUNC="${HOME}/.local_functions" 
+if [[ -e "${LOCAL_FUNC}" ]]; then
+  echo "${LOCAL_FUNC} already exists"
 else
-  touch "${HOME}/.local_functions"
+  touch "${LOCAL_FUNC}"
+  echo "created ${LOCAL_FUNC}"
 fi
 
-if [[ -e "${HOME}/.zsh_plugins_local" ]]; then
-  echo "${HOME}/.zsh_plugins_local already exists"
+ZSH_PLUGINS="${HOME}/.zsh_plugins_local" 
+if [[ -e "${ZSH_PLUGINS}" ]]; then
+  echo "${ZSH_PLUGINS} already exists"
 else
-  touch "${HOME}/.zsh_plugins_local"
+  touch "${ZSH_PLUGINS}"
+  echo "created ${ZSH_PLUGINS}"
 fi
 
+DIR_COLORS="${HOME}/.dir_colors" 
+if [[ -e "${DIR_COLORS}" ]]; then
+  echo "${DIR_COLORS} already exists"
+else
+  ln -s "${DOTFILES}/.dir_colors" "${DIR_COLORS}"
+  echo "linked ${DIR_COLORS}"
+fi

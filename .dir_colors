@@ -1,0 +1,9 @@
+NORMAL  0
+FILE    0
+DIR     1;36
+LINK    35
+FIFO    32
+SOCK    33
+BLK     44;37
+CHR     44;37
+EXEC    31
