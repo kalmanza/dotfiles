@@ -1,4 +1,4 @@
 homebrew/*.lock.json
 .secrets
-**/.netrwhist
+**/.netrw*
 **/*.swp
