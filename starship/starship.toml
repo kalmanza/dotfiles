@@ -32,6 +32,12 @@ $character"""
 add_newline = true
 command_timeout = 5000
 
+[username]
+style_user = 'bold blue'
+format = '[$user]($style)'
+
+[hostname]
+format= '@[$hostname](bold blue):'
 
 [fill]
 symbol = ' '
