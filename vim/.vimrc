@@ -32,6 +32,7 @@ set wrap
 syntax enable
 let mapleader = "\\"
 let maplocalleader = ";"
+let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 runtime ftplugin/man.vim
 " }}}
 
