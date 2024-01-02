@@ -80,10 +80,13 @@ augroup END
 "Text file settings-------------------- {{{
 augroup ft_text
   autocmd!
+  autocmd Filetype text setlocal foldmethod=marker
+  autocmd Filetype text setlocal foldmarker=¬,·
+  autocmd Filetype text vnoremap <buffer> <localleader>if <esc>'>o·<esc>'<O ¬<esc>hi
   autocmd Filetype text setlocal textwidth=80
   autocmd Filetype text setlocal nowrap
   autocmd Filetype text setlocal colorcolumn=80
-augroup END
+  autocmd Filetype text nnoremap <buffer> <localleader>id :put =strftime('%b %d, %Y')<Return>kddA ¬<esc>o<esc>0i·<esc>O<tab>
 " }}}
 
 "Python file settings -------------------- {{{
