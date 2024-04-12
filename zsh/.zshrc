@@ -4,6 +4,9 @@
 export DOTFILE_DIR="${HOME}/.dotfiles"
 hash -d dotfiles=${DOTFILE_DIR}
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # For LSCOLORS
 if [[ $(uname) =~ "Darwin" ]]; then
   export CLICOLOR=1
