@@ -58,3 +58,6 @@ format = '[$symbol($version )]($style)'
 [time]
 format = '[$time]($style) '
 disabled = false
+
+[git_status]
+disabled = true
