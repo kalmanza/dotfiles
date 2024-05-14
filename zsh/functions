@@ -135,3 +135,8 @@ function man() {
     command vim "+silent Man $@" +only 
   fi
 }
+
+# speed up git autocomplete
+__git_files () { 
+  _wanted files expl 'local files' _files     
+}

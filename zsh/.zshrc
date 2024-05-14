@@ -77,3 +77,4 @@ fi
 # Starship for prompt config
 export STARSHIP_CONFIG=${DOTFILE_DIR}/starship/starship.toml
 eval "$(starship init zsh)"
+
