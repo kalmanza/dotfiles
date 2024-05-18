@@ -75,12 +75,6 @@ function jqi() {
   fi
 }
 
-function ssh() {
-  emulate -L zsh
-
-  local LOCAL_TERM=$(echo -n "$TERM" | sed -e s/tmux/screen/)
-  env TERM=$LOCAL_TERM command ssh "$@"
-}
 
 # regmv = regex + mv (mv with regex parameter specification)
 #   example: regmv '/\.tif$/.tiff/' *
