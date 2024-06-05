@@ -5,7 +5,7 @@
 alias view="$EDITOR -R"
 
 #Tmux
-alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
+#alias tmux="tmux -f ${DOTFILE_DIR}/tmux/.tmux.conf"
 
 #Edit local functions
 alias efuncl="vim ${HOME}/.local_functions"

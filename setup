@@ -58,3 +58,12 @@ else
   ln -s "${DOTFILES}/.dir_colors" "${DIR_COLORS}"
   echo "linked ${DIR_COLORS}"
 fi
+
+
+TMUX_CONF="${HOME}/.tmux.conf" 
+if [[ -e "${TMUX_CONF}" ]]; then
+  echo "${TMUX_CONF} already exists"
+else
+  ln -s "${DOTFILES}/tmux/.tmux.conf" "${TMUX_CONF}"
+  echo "linked ${TMUX_CONF}"
+fi
