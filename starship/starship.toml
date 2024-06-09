@@ -50,7 +50,7 @@ disabled = true
 format = '[$symbol$version]($style) '
 
 [python]
-format = '[$symbol($version )]($style)'
+format = '[$virtualenv $symbol($version )]($style)'
 
 [ruby]
 format = '[$symbol($version )]($style)'
