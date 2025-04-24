@@ -73,7 +73,7 @@ augroup END
 augroup ft_conf
   autocmd!
   autocmd Filetype conf setlocal textwidth=0
-  autocmd Filetype conf setlocal colorcolumn=80
+  autocmd Filetype conf setlocal colorcolumn=81
 augroup END
 " }}}
 
@@ -85,7 +85,7 @@ augroup ft_text
   autocmd Filetype text vnoremap <buffer> <localleader>if >><esc>'>o·<esc><<'<O ¬<esc><<^hi
   autocmd Filetype text setlocal textwidth=80
   autocmd Filetype text setlocal nowrap
-  autocmd Filetype text setlocal colorcolumn=80
+  autocmd Filetype text setlocal colorcolumn=81
   autocmd Filetype text nnoremap <buffer> <localleader>id :put =strftime('%b %d, %Y')<Return>kddA ¬<esc>o<esc>0i·<esc>O<tab>
 " }}}
 
@@ -94,7 +94,7 @@ augroup ft_python
   autocmd Filetype python nnoremap <buffer> <localleader>c I#<esc>
   "li for lint
   autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r:e\r"<cr>
-  autocmd Filetype python setlocal colorcolumn=80
+  autocmd Filetype python setlocal colorcolumn=81
 augroup END
 " }}}
 
@@ -104,7 +104,7 @@ augroup ft_vim
   autocmd Filetype vim setlocal foldmethod=marker
   autocmd Filetype vim vnoremap <buffer> <localleader>if <esc>'>o<esc>0i" }}}<esc>'<O<esc>0i"-------------------- {{{<esc>T"i
   autocmd Filetype vim setlocal keywordprg=:help
-  autocmd Filetype vim setlocal colorcolumn=80
+  autocmd Filetype vim setlocal colorcolumn=81
 augroup END
 " }}}
 
