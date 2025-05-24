@@ -124,10 +124,21 @@ function tn() {
   command "$@" && terminal-notifier -message "Finished $@"
 }
 
-function man() {
+function vim_man() {
   if [[ $(command man -w "$@") ]]; then
     command vim "+silent Man $@" +only 
   fi
+}
+
+function man() {
+  while (( $# )); do
+    case $1 in
+      -k)                 command man "$@"; return;;
+      -a)                 command man "$@"; return;;
+      *)                  vim_man "$@"; return;;
+    esac
+    shift
+  done
 }
 
 # speed up git autocomplete
