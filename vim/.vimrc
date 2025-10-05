@@ -12,6 +12,7 @@ set hlsearch
 filetype plugin on
 filetype indent on
 set path+=**
+set regexpengine=0
 set relativenumber number
 set ruler
 set shiftwidth=2
@@ -33,6 +34,7 @@ syntax enable
 let mapleader = "\\"
 let maplocalleader = ";"
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_keepdir = 0
 runtime ftplugin/man.vim
 " }}}
 
@@ -95,6 +97,18 @@ augroup ft_python
   "li for lint
   autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r:e\r"<cr>
   autocmd Filetype python setlocal colorcolumn=81
+augroup END
+" }}}
+
+"Postdude file settings -------------------- {{{
+augroup ft_postdude
+  autocmd!
+  autocmd BufNew,BufNewFile,BufRead *.postdude setlocal ft=json
+  autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>c I#<esc>
+  "ss for postdude send
+  autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>ss :<c-u>execute "normal! :w\r:!~/Scripts/postdude/.venv/bin/python ~/Scripts/postdude/postdude.py -f % \r\r"<cr>
+  autocmd BufNew,BufNewFile,BufRead *.postdude setlocal colorcolumn=81
+  autocmd BufNew,BufNewFile,BufRead *.postdude setlocal autoread
 augroup END
 " }}}
 

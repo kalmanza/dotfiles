@@ -12,7 +12,7 @@ function! s:GrepOperator(type)
   else
     return
   endif
-  silent! execute ":grep! -R" shellescape(@@) "."
+  silent! execute ":grep! -R --exclude=tags" shellescape(@@) "."
   redraw!
   copen
   let @@ = save_unnamed_register
