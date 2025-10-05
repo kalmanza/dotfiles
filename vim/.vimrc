@@ -106,7 +106,7 @@ augroup ft_postdude
   autocmd BufNew,BufNewFile,BufRead *.postdude setlocal ft=json
   autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>c I#<esc>
   "ss for postdude send
-  autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>ss :<c-u>execute "normal! :w\r:!~/Scripts/postdude/.venv/bin/python ~/Scripts/postdude/postdude.py -f % \r\r"<cr>
+  autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>ss :<c-u>execute "normal! :w\r:! postdude % \r\r"<cr>
   autocmd BufNew,BufNewFile,BufRead *.postdude setlocal colorcolumn=81
   autocmd BufNew,BufNewFile,BufRead *.postdude setlocal autoread
 augroup END
