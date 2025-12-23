@@ -78,3 +78,6 @@ fi
 export STARSHIP_CONFIG=${DOTFILE_DIR}/starship/starship.toml
 eval "$(starship init zsh)"
 
+# GPG
+GPG_TTY=$(tty)
+export GPG_TTY
