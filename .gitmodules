@@ -1,3 +1,6 @@
 [submodule "tmux/.tmux-themepack"]
 	path = tmux/.tmux-themepack
 	url = git@github.com:jimeh/tmux-themepack.git
+[submodule "vim/.vim/pack/jparise/start/graphql"]
+	path = vim/.vim/pack/jparise/start/graphql
+	url = https://github.com/jparise/vim-graphql
