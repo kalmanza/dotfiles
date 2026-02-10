@@ -2,68 +2,190 @@
 set -eo pipefail
 
 DOTFILES="${HOME}/.dotfiles"
+PACKAGES="${DOTFILES}/packages.json"
 
-ZSHRC="${HOME}/.zshrc"
-if [[ -e "${ZSHRC}" ]]; then
-  echo "${ZSHRC} already exists"
-else
-  ln -s "${DOTFILES}/zsh/.zshrc" "${ZSHRC}"
-  echo "linked ${ZSHRC}"
+#---------------------------------------
+# OS Detection
+#---------------------------------------
+OS="$(uname -s)"
+case "$OS" in
+  Darwin) PLATFORM="macos" ;;
+  Linux)  PLATFORM="linux" ;;
+  *)      echo "Unsupported OS: $OS"; exit 1 ;;
+esac
+echo "Detected platform: $PLATFORM"
+
+#---------------------------------------
+# Bootstrap: ensure brew (macOS) and jq
+#---------------------------------------
+ensure_brew() {
+  if command -v brew &>/dev/null; then return; fi
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ -e "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -e "/usr/local/bin/brew" ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+}
+
+ensure_jq() {
+  if command -v jq &>/dev/null; then return; fi
+  echo "Installing jq..."
+  if [[ "$PLATFORM" == "macos" ]]; then
+    ensure_brew
+    brew install jq
+  else
+    if command -v apt-get &>/dev/null; then
+      sudo apt-get update && sudo apt-get install -y jq
+    elif command -v dnf &>/dev/null; then
+      sudo dnf install -y jq
+    elif command -v pacman &>/dev/null; then
+      sudo pacman -Syu --noconfirm jq
+    fi
+  fi
+}
+
+ensure_jq
+
+#---------------------------------------
+# Package Installation
+#---------------------------------------
+install_macos_packages() {
+  ensure_brew
+
+  echo "Tapping repositories..."
+  jq -r '.taps[]' "$PACKAGES" | while IFS= read -r tap; do
+    brew tap "$tap" 2>/dev/null || true
+  done
+
+  local pkgs
+  pkgs=$(jq -r '[.common[], (.mapped[] | .brew), (.extras[] | .brew // empty)] | join(" ")' "$PACKAGES")
+  echo "Installing packages via Homebrew..."
+  brew install $pkgs
+}
+
+install_linux_packages() {
+  local mgr
+  if command -v apt-get &>/dev/null; then
+    mgr="apt"
+  elif command -v dnf &>/dev/null; then
+    mgr="dnf"
+  elif command -v pacman &>/dev/null; then
+    mgr="pacman"
+  else
+    echo "No supported package manager found (apt/dnf/pacman). Skipping."
+    return 1
+  fi
+
+  local pkgs
+  pkgs=$(jq -r --arg m "$mgr" \
+    '[.common[], (.mapped[] | .[$m] // empty), (.linux_only[] | .[$m] // empty)] | join(" ")' \
+    "$PACKAGES")
+  echo "Installing packages via $mgr..."
+
+  case "$mgr" in
+    apt)    sudo apt-get update && sudo apt-get install -y $pkgs ;;
+    dnf)    sudo dnf install -y $pkgs ;;
+    pacman) sudo pacman -Syu --noconfirm $pkgs ;;
+  esac
+}
+
+install_extras() {
+  echo "Checking extras..."
+  jq -r '.extras[] | select(.check) |
+    [.name, .check,
+     (if .script then "script" elif .pip then "pip" elif .gem then "gem" elif .info then "info" else "skip" end),
+     (.script // .pip // .gem // .info // "")] | @tsv' \
+    "$PACKAGES" |
+  while IFS=$'\t' read -r name check_cmd method install_arg; do
+    if [[ -n "$check_cmd" ]] && command -v "$check_cmd" &>/dev/null; then
+      echo "  $name already installed"
+      continue
+    fi
+
+    case "$method" in
+      script)
+        echo "Installing $name via script..."
+        eval "$install_arg"
+        ;;
+      pip)
+        echo "Installing $name via pip..."
+        pip3 install --user "$install_arg"
+        ;;
+      gem)
+        if command -v gem &>/dev/null; then
+          echo "Installing $name via gem..."
+          gem install "$install_arg"
+        else
+          echo "  Skipping $name — gem not available"
+        fi
+        ;;
+      info)
+        echo "  $name not installed. Install manually: $install_arg"
+        ;;
+    esac
+  done
+}
+
+install_packages() {
+  if [[ "$PLATFORM" == "macos" ]]; then
+    install_macos_packages
+  elif [[ "$PLATFORM" == "linux" ]]; then
+    install_linux_packages
+  fi
+  install_extras
+}
+
+#---------------------------------------
+# Helpers
+#---------------------------------------
+link_file() {
+  local src="$1" dst="$2"
+  if [[ -e "$dst" ]]; then
+    echo "$dst already exists"
+  else
+    ln -s "$src" "$dst"
+    echo "linked $dst"
+  fi
+}
+
+create_file() {
+  local dst="$1"
+  if [[ -e "$dst" ]]; then
+    echo "$dst already exists"
+  else
+    touch "$dst"
+    echo "created $dst"
+  fi
+}
+
+#---------------------------------------
+# Install Packages
+#---------------------------------------
+install_packages
+
+#---------------------------------------
+# Git Submodules
+#---------------------------------------
+git -C "$DOTFILES" submodule update --init --recursive
+
+#---------------------------------------
+# Symlinks
+#---------------------------------------
+link_file "${DOTFILES}/zsh/.zshrc"       "${HOME}/.zshrc"
+link_file "${DOTFILES}/vim/.vimrc"       "${HOME}/.vimrc"
+link_file "${DOTFILES}/vim/.vim"         "${HOME}/.vim"
+link_file "${DOTFILES}/tmux/.tmux.conf"  "${HOME}/.tmux.conf"
+
+# .dir_colors is only used on Linux (macOS uses CLICOLOR/LSCOLORS)
+if [[ "$PLATFORM" == "linux" ]]; then
+  link_file "${DOTFILES}/.dir_colors" "${HOME}/.dir_colors"
 fi
 
-VIMRC="${HOME}/.vimrc"
-if [[ -e "${VIMRC}" ]]; then
-  echo "${VIMRC} already exists"
-else
-  ln -s "${DOTFILES}/vim/.vimrc" "${VIMRC}"
-  echo "linked ${VIMRC}"
-fi
-
-VIM="${HOME}/.vim" 
-if [[ -e "${VIM}" ]]; then
-  echo "${VIM} already exists"  
-else
-  ln -s "${DOTFILES}/vim/.vim" "${VIM}"
-  echo "linke ${VIM}"
-fi
-
-ZSH_LOCAL="${HOME}/.zsh_local" 
-if [[ -e "${ZSH_LOCAL}" ]]; then
-  echo "${ZSH_LOCAL} already exists"
-else
-  touch "${HOME}/.zsh_local"
-  echo "created ${ZSH_LOCAL}"
-fi
-
-LOCAL_FUNC="${HOME}/.local_functions" 
-if [[ -e "${LOCAL_FUNC}" ]]; then
-  echo "${LOCAL_FUNC} already exists"
-else
-  touch "${LOCAL_FUNC}"
-  echo "created ${LOCAL_FUNC}"
-fi
-
-ZSH_PLUGINS="${HOME}/.zsh_plugins_local" 
-if [[ -e "${ZSH_PLUGINS}" ]]; then
-  echo "${ZSH_PLUGINS} already exists"
-else
-  touch "${ZSH_PLUGINS}"
-  echo "created ${ZSH_PLUGINS}"
-fi
-
-DIR_COLORS="${HOME}/.dir_colors" 
-if [[ -e "${DIR_COLORS}" ]]; then
-  echo "${DIR_COLORS} already exists"
-else
-  ln -s "${DOTFILES}/.dir_colors" "${DIR_COLORS}"
-  echo "linked ${DIR_COLORS}"
-fi
-
-
-TMUX_CONF="${HOME}/.tmux.conf" 
-if [[ -e "${TMUX_CONF}" ]]; then
-  echo "${TMUX_CONF} already exists"
-else
-  ln -s "${DOTFILES}/tmux/.tmux.conf" "${TMUX_CONF}"
-  echo "linked ${TMUX_CONF}"
-fi
+#---------------------------------------
+# Local Override Files
+#---------------------------------------
+create_file "${HOME}/.zsh_local"
+create_file "${HOME}/.local_functions"
+create_file "${HOME}/.zsh_plugins_local"

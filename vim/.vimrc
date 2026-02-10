@@ -95,7 +95,7 @@ augroup ft_text
 augroup ft_python
   autocmd Filetype python nnoremap <buffer> <localleader>c I#<esc>
   "li for lint
-  autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r:e\r"<cr>
+  autocmd Filetype python nnoremap <buffer> <localleader>li :<c-u>execute "normal! :w\r:!black %\r\r:e\r:redraw!\r"<cr>
   autocmd Filetype python setlocal colorcolumn=81
 augroup END
 " }}}

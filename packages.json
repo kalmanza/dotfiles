@@ -1,0 +1,41 @@
+{
+  "taps": [
+    "homebrew/bundle",
+    "homebrew/services",
+    "homebrew/test-bot",
+    "tavianator/tap"
+  ],
+
+  "common": [
+    "ack", "automake", "bash", "coreutils", "git", "htop",
+    "jq", "mosh", "nmap", "rsync", "socat", "tmux", "wget"
+  ],
+
+  "mapped": [
+    { "brew": "python@3.12", "apt": "python3 python3-pip", "dnf": "python3 python3-pip", "pacman": "python python-pip" },
+    { "brew": "glib",        "apt": "libglib2.0-dev",      "dnf": "glib2-devel",        "pacman": "glib2" },
+    { "brew": "gnutls",      "apt": "libgnutls28-dev",     "dnf": "gnutls-devel",       "pacman": "gnutls" },
+    { "brew": "libtool",     "apt": "libtool-bin",         "dnf": "libtool",            "pacman": "libtool" },
+    { "brew": "makedepend",  "apt": "xutils-dev",          "dnf": "imake",              "pacman": "imake" },
+    { "brew": "msgpack",     "apt": "libmsgpack-dev",      "dnf": "msgpack-devel",      "pacman": "msgpack-c" },
+    { "brew": "ninja",       "apt": "ninja-build",         "dnf": "ninja-build",        "pacman": "ninja" },
+    { "brew": "openssl@1.1", "apt": "libssl-dev",          "dnf": "openssl-devel",      "pacman": "openssl" },
+    { "brew": "pipenv",      "apt": "pipenv",              "dnf": "pipenv",             "pacman": "python-pipenv" },
+    { "brew": "terminal-notifier", "apt": "libnotify-bin",  "dnf": "libnotify",          "pacman": "libnotify" }
+  ],
+
+  "linux_only": [
+    { "apt": "xclip", "dnf": "xclip", "pacman": "xclip" }
+  ],
+
+  "extras": [
+    { "name": "starship",    "check": "starship",    "brew": "starship",    "script": "curl -sS https://starship.rs/install.sh | sh -s -- -y" },
+    { "name": "rbenv",       "check": "rbenv",       "brew": "rbenv",       "script": "curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash" },
+    { "name": "ruby-build",  "brew": "ruby-build" },
+    { "name": "black",       "check": "black",       "brew": "black",       "pip": "black" },
+    { "name": "tmuxinator",  "check": "tmuxinator",  "brew": "tmuxinator",  "gem": "tmuxinator" },
+    { "name": "sk",          "check": "sk",          "brew": "sk",          "info": "cargo install skim" },
+    { "name": "watchman",    "check": "watchman",    "brew": "watchman",    "info": "https://facebook.github.io/watchman/docs/install" },
+    { "name": "ykman",       "check": "ykman",       "brew": "ykman",       "info": "pip install yubikey-manager" }
+  ]
+}

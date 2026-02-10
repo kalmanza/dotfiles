@@ -1,7 +1,4 @@
-# USE NVIM
-#alias vim="nvim"
-
-# View with nvim
+# View with vim
 alias view="$EDITOR -R"
 
 #Tmux

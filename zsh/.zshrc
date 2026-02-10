@@ -41,10 +41,14 @@ zstyle :compinstall filename "${HOME}/.zshrc"
 fpath+=(${DOTFILE_DIR}/zsh)
 
 #RBENV
-eval "$(rbenv init -)"
+if command -v rbenv &>/dev/null; then
+  eval "$(rbenv init -)"
+fi
 
 #TMUXINATOR AUTOCOMPLETE
-source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
+if [[ -r "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh" ]]; then
+  source "${DOTFILE_DIR}/tmux/.tmuxinator/tmuxinator.zsh"
+fi
 
 #Functions from dotfiles
 source "${DOTFILE_DIR}/zsh/functions"
@@ -76,7 +80,9 @@ fi
 
 # Starship for prompt config
 export STARSHIP_CONFIG=${DOTFILE_DIR}/starship/starship.toml
-eval "$(starship init zsh)"
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 # GPG
 GPG_TTY=$(tty)

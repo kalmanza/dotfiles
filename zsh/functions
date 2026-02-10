@@ -121,7 +121,16 @@ function subtree() {
 }
 
 function tn() {
-  command "$@" && terminal-notifier -message "Finished $@"
+  command "$@"
+  local exit_code=$?
+  if (( exit_code == 0 )); then
+    if [[ $(uname) == "Darwin" ]] && command -v terminal-notifier &>/dev/null; then
+      terminal-notifier -message "Finished: $*"
+    elif command -v notify-send &>/dev/null; then
+      notify-send "Terminal" "Finished: $*"
+    fi
+  fi
+  return $exit_code
 }
 
 function vim_man() {
