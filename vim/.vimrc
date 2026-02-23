@@ -109,6 +109,10 @@ augroup ft_postdude
   autocmd BufNew,BufNewFile,BufRead *.postdude nnoremap <buffer> <localleader>ss :<c-u>execute "normal! :w\r:! postdude % \r\r"<cr>
   autocmd BufNew,BufNewFile,BufRead *.postdude setlocal colorcolumn=81
   autocmd BufNew,BufNewFile,BufRead *.postdude setlocal autoread
+  "en to base64 encode a string
+  autocmd BufNew,BufNewFile,BufRead *.postdude vnoremap <buffer> <localleader>en y:<c-u>let @"=trim(system('base64',@"))<cr>gvp
+  "de to base64 decode a string
+  autocmd BufNew,BufNewFile,BufRead *.postdude vnoremap <buffer> <localleader>de y:<c-u>let @"=trim(system('base64 -d',@"))<cr>gvp
 augroup END
 " }}}
 
