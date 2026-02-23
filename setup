@@ -160,10 +160,6 @@ create_file() {
   fi
 }
 
-#---------------------------------------
-# Install Packages
-#---------------------------------------
-install_packages
 
 #---------------------------------------
 # Git Submodules (skip if not a git repo)
@@ -191,3 +187,8 @@ fi
 create_file "${HOME}/.zsh_local"
 create_file "${HOME}/.local_functions"
 create_file "${HOME}/.zsh_plugins_local"
+
+#---------------------------------------
+# Install Packages
+#---------------------------------------
+install_packages
