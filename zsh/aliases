@@ -16,6 +16,9 @@ alias erc="vim ${HOME}/.zshrc"
 # Edit vim rc
 alias evrc="vim ${DOTFILE_DIR}/vim/.vimrc"
 
+# Edit local vim overrides
+alias evrcl="vim ${HOME}/.vim_local"
+
 # Edit tmux.conf
 alias etconf="vim ${DOTFILE_DIR}/tmux/.tmux.conf"
 

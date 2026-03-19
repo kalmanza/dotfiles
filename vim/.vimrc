@@ -140,3 +140,15 @@ augroup ft_help
   autocmd Filetype help setlocal colorcolumn=""
 augroup END
 " }}}
+
+" Local system settings {{{
+let s:local_vimrc = expand('~/.vim_local')
+if filereadable(s:local_vimrc)
+  execute 'source' s:local_vimrc
+endif
+
+let s:local_plugins = expand('~/.vim_local_plugins')
+if isdirectory(s:local_plugins)
+  execute 'set runtimepath+=' . s:local_plugins
+endif
+" }}}
