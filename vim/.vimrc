@@ -1,41 +1,43 @@
 "Global settings-------------------- {{{
+filetype indent on
+filetype plugin on
+let g:netrw_keepdir = 0
+let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
+let mapleader = "\\"
+let maplocalleader = ";"
+runtime ftplugin/man.vim
 set autoindent
 set backspace=indent,eol,start
 set complete-=i
-set nolangremap
 set expandtab
 set formatoptions+=j
 set history=1000
+set hlsearch
 set ignorecase
 set incsearch
-set hlsearch
-filetype plugin on
-filetype indent on
+set laststatus=2
+set modeline
+set modelines=1
+set nolangremap
 set path+=**
 set regexpengine=0
 set relativenumber number
 set ruler
+set scrolloff=1
 set shiftwidth=2
+set sidescroll=1
+set sidescrolloff=2
 set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
-set scrolloff=1
-set sidescroll=1
-set sidescrolloff=2
 set ttimeout
-set laststatus=2
 set ttimeoutlen=100
 set wildmenu
 set wildoptions=pum
 set wrap
 syntax enable
-let mapleader = "\\"
-let maplocalleader = ";"
-let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_keepdir = 0
-runtime ftplugin/man.vim
 " }}}
 
 "Colors-------------------- {{{
