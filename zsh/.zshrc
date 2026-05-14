@@ -1,7 +1,7 @@
 # DOTFILES
 # Make sure this is set to the dotfiles directory
 # Many things rely on this
-export DOTFILE_DIR="${HOME}/.dotfiles"
+export DOTFILE_DIR="${DOTFILE_DIR:-${HOME}/.dotfiles}"
 hash -d dotfiles=${DOTFILE_DIR}
 
 # Homebrew
